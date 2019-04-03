@@ -1,8 +1,8 @@
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
+import java.util.Arrays;
 import java.util.Comparator;
-import java.util.PriorityQueue;
 import java.util.StringTokenizer;
 
 public class Main1350 {
@@ -13,13 +13,7 @@ public class Main1350 {
 		st=new StringTokenizer(br.readLine());
 		int N=Integer.parseInt(st.nextToken());
 		int M=Integer.parseInt(st.nextToken());
-		PriorityQueue<edge> pq=new PriorityQueue<>(new Comparator<edge>() {
-
-			@Override
-			public int compare(edge o1, edge o2) {
-				return o2.value-o1.value;
-			}
-		});
+		edge[] pq=new edge[M];
 		parent=new int[N+1];
 		for (int i = 1; i <=N; i++) {
 			parent[i]=i;
@@ -27,12 +21,18 @@ public class Main1350 {
 		for (int i = 0; i <M; i++) {
 			st=new StringTokenizer(br.readLine());
 			
-			pq.add(new edge(Integer.parseInt(st.nextToken()),Integer.parseInt(st.nextToken()),Integer.parseInt(st.nextToken())));
-			
+			pq[i]=new edge(Integer.parseInt(st.nextToken()),Integer.parseInt(st.nextToken()),Integer.parseInt(st.nextToken()));
 		}
+		Arrays.sort(pq, new Comparator<edge>() {
+
+			@Override
+			public int compare(edge o1, edge o2) {
+				return o2.value-o1.value;
+			}
+		});
 		int tot=0;
-		while(!pq.isEmpty()) {
-			edge Edge=pq.poll();
+		for (int i = 0; i < M; i++) {
+			edge Edge=pq[i];
 			if(find(Edge.end)==find(Edge.start)) {
 				continue;
 			}
