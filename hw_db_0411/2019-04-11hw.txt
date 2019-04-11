@@ -1,0 +1,22 @@
+CREATE TABLE `ssafyhrm`.`product` (
+  `PCODE` VARCHAR(10) NOT NULL,
+  `PNAME` VARCHAR(45) NOT NULL,
+  `PRICE` INT NOT NULL,
+  `description` VARCHAR(45) NULL,
+  PRIMARY KEY (`PCODE`));
+
+insert into product(pcode,pname,price,description)
+values ('0001','TV1',1000000,'');
+insert into product(pcode,pname,price,description)
+values ('0002','TV2',1200000,'');
+insert into product(pcode,pname,price,description)
+values ('0003','NOTEBOOK-PC1',800000,'');
+insert into product(pcode,pname,price,description)
+values ('0004','TV3',900000,'');
+insert into product(pcode,pname,price,description)
+values ('0005','NOTEBOOK-PC2',1500000,'');
+
+select * from product;
+select pcode,pname,price*0.85 from product;
+update product set price=price*0.8 where pname like '%TV%';
+select sum(price) from product;
