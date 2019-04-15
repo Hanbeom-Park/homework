@@ -1,0 +1,5 @@
+select e.ename,e.job,e.sal from emp e join dept d on e.deptno=d.deptno where d.loc like '%CHICAGO%';
+select empno,ename,job,deptno from emp where empno not in (select mgr from emp); 
+select ename,job,mgr from emp where mgr in (select mgr from emp where ename like '%BLAKE%');
+select * from emp order by hiredate limit 5;
+select e.ename,e.job,d.dname from emp e join dept d on e.deptno=d.deptno where mgr in (select empno from emp where ename like '%JONES'); 
